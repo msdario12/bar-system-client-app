@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { CardItem } from './components/CardItem';
 import { menuItems } from './db/menuItems';
 export const App = () => {
+	const [cartShopping, setCartShopping] = useState([]);
 	return (
 		<div className='container mx-auto px-3'>
 			<header>
@@ -35,7 +37,13 @@ export const App = () => {
 				<div>
 					<h3 className='text-2xl'>Bebidas</h3>
 					{menuItems &&
-						menuItems.map((item) => <CardItem key={item.id} item={item} />)}
+						menuItems.map((item) => (
+							<CardItem
+								key={item.id}
+								item={item}
+								setCartShopping={setCartShopping}
+							/>
+						))}
 				</div>
 			</section>
 		</div>
