@@ -13,19 +13,13 @@ export const CartShoppingTable = (props) => {
 			<table className='w-full text-sm text-left text-gray-500 dark:text-gray-400'>
 				<thead className='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
 					<tr>
-						<th scope='col' className='px-6 py-3'>
-							<span className='sr-only'>Image</span>
+						<th scope='col' className='text-center my-auto px-6 py-3'>
+							Product y QTY
 						</th>
-						<th scope='col' className='px-6 py-3'>
-							Product
-						</th>
-						<th scope='col' className='px-6 py-3'>
-							Qty
-						</th>
-						<th scope='col' className='px-6 py-3'>
+						<th scope='col' className='text-center my-auto px-6 py-3'>
 							Price
 						</th>
-						<th scope='col' className='px-6 py-3'>
+						<th scope='col' className='text-center my-auto px-6 py-3'>
 							Action
 						</th>
 					</tr>
@@ -42,11 +36,14 @@ export const CartShoppingTable = (props) => {
 				</tbody>
 				<tfoot>
 					<tr className='font-semibold text-gray-900 dark:text-white'>
-						<th scope='row' colSpan={3} className='px-6 py-3 text-base'>
+						<th
+							scope='row'
+							colSpan={1}
+							className='text-center my-auto px-6 py-3 text-base'>
 							Total
 						</th>
 
-						<td className='px-6 py-3'>{'$' + totalCart}</td>
+						<td className='text-center my-auto px-6 py-3'>{'$' + totalCart}</td>
 					</tr>
 				</tfoot>
 			</table>

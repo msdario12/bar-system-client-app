@@ -1,6 +1,7 @@
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useCartOperations } from '../hooks/useCartOperations';
+import { CircleButton } from '../elements/CircleButton';
 
 export const CardItem = (props) => {
 	const { item, cartShopping, setCartShopping } = props;
@@ -32,31 +33,37 @@ export const CardItem = (props) => {
 				</div>
 
 				<div className='grid grid-cols-6 col-span-4 max-h-12 my-auto'>
-					<span className='my-auto col-span-3 text-3xl  font-bold text-gray-900 dark:text-white'>
+					<span className='my-auto col-span-3 text-2xl font-bold text-gray-900 dark:text-white'>
 						{`$ ${price}`}
 					</span>
 					{foundedItem ? (
-						<div className='grid col-span-3 grid-cols-3'>
-							<button
-								onClick={() => handleClickDecrementItems(foundedItem.id)}
-								className='text-white col-span-1 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>
-								<FontAwesomeIcon icon={faMinus} size='sm' />
-							</button>
-							<span className='grid-cols-1 content-center grid text-center text-lg font-bold text-slate-200'>
+						<div className='col-span-3 place-content-end flex items-center space-x-3'>
+							<div className='flex justify-center items-center'>
+								<CircleButton
+									onClick={() => handleClickDecrementItems(foundedItem.id)}>
+									<FontAwesomeIcon icon={faMinus} size='lg' />
+								</CircleButton>
+							</div>
+
+							<span className='content-center grid text-center text-base px-3 font-bold text-slate-200'>
 								{foundedItem ? foundedItem.itemCount : 'nada'}
 							</span>
-							<button
-								onClick={() => handleClickIncrementItems(foundedItem.id)}
-								className='text-white col-span-1 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>
-								<FontAwesomeIcon icon={faPlus} size='sm' />
-							</button>
+
+							<div className='flex justify-center items-center'>
+								<CircleButton
+									onClick={() => handleClickIncrementItems(foundedItem.id)}>
+									<FontAwesomeIcon icon={faPlus} size='lg' />
+								</CircleButton>
+							</div>
 						</div>
 					) : (
-						<button
-							onClick={() => handleClickAddToCart(item)}
-							className='text-white col-span-3 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>
-							<p className='text-center'>Agregar al pedido</p>
-						</button>
+						<div className='col-span-3 place-content-end flex'>
+							<button
+								onClick={() => handleClickAddToCart(item)}
+								className='text-white  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>
+								Agregar al pedido
+							</button>
+						</div>
 					)}
 				</div>
 			</div>
