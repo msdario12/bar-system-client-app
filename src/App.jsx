@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { CardItem } from './components/CardItem';
 import { menuItems } from './db/menuItems';
+import { CartShoppingTable } from './components/CartShoppingTable';
 export const App = () => {
 	const [cartShopping, setCartShopping] = useState([]);
 	return (
@@ -45,6 +46,13 @@ export const App = () => {
 							/>
 						))}
 				</div>
+			</section>
+			<section>
+				<h2 className='text-3xl font-bold'>Resumen del pedido</h2>
+				<CartShoppingTable
+					cartShopping={cartShopping}
+					setCartShopping={setCartShopping}
+				/>
 			</section>
 		</div>
 	);

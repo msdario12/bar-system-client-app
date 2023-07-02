@@ -1,13 +1,16 @@
-import { useState } from 'react';
+import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useCartOperations } from '../hooks/useCartOperations';
 
 export const CardItem = (props) => {
 	const { item, setCartShopping } = props;
 	const { name, price, description, category, image } = item;
-	const [itemCount, setItemCount] = useState(0);
-	const handleClickAddToCart = () => {
-		setItemCount((prev) => prev + 1);
-		setCartShopping((prev) => [...prev, { ...item, itemCount }]);
-	};
+	const {
+		handleClickAddToCart,
+		handleClickDecrementItems,
+		handleClickIncrementItems,
+		itemCount,
+	} = useCartOperations(item, setCartShopping);
 	return (
 		<div className='w-full grid grid-cols-6 mb-3 bg-white  rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden'>
 			<div className='col-span-2'>
@@ -34,17 +37,17 @@ export const CardItem = (props) => {
 					{itemCount > 0 ? (
 						<div className='grid col-span-3 grid-cols-3'>
 							<button
-								onClick={() => setItemCount((prev) => prev - 1)}
+								onClick={handleClickDecrementItems}
 								className='text-white col-span-1 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>
-								<p className='text-center'>-</p>
+								<FontAwesomeIcon icon={faMinus} size='sm' />
 							</button>
 							<span className='grid-cols-1 content-center grid text-center text-lg font-bold text-slate-200'>
 								{itemCount}
 							</span>
 							<button
-								onClick={() => setItemCount((prev) => prev + 1)}
+								onClick={handleClickIncrementItems}
 								className='text-white col-span-1 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>
-								<p className='text-center'>+</p>
+								<FontAwesomeIcon icon={faPlus} size='sm' />
 							</button>
 						</div>
 					) : (
