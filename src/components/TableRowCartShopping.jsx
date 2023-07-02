@@ -4,9 +4,21 @@ import { useCartOperations } from '../hooks/useCartOperations';
 
 export const TableRowCartShopping = (props) => {
 	const { item, setCartShopping } = props;
-	const { handleClickDecrementItems, handleClickIncrementItems, removeItem } =
-		useCartOperations(setCartShopping);
+	const {
+		handleClickDecrementItems,
+		handleClickIncrementItems,
+		removeItem,
+		setNumberItems,
+	} = useCartOperations(setCartShopping);
 	const { name, price, image, itemCount } = item;
+
+	const handleInputChange = (e, itemID) => {
+		const num = Number(e.target.value);
+		if (num >= 100) {
+			return;
+		}
+		setNumberItems(itemID, num);
+	};
 
 	return (
 		<tr className='bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600'>
@@ -26,6 +38,7 @@ export const TableRowCartShopping = (props) => {
 					<div>
 						<input
 							value={itemCount}
+							onChange={(e) => handleInputChange(e, item.id)}
 							type='number'
 							id='first_product'
 							className='bg-gray-50 w-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'

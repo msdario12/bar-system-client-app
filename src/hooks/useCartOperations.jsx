@@ -27,6 +27,18 @@ export const useCartOperations = (setCartShopping) => {
 		localStorage.setItem('cart', JSON.stringify(cart));
 		setCartShopping(cart);
 	};
+	const setNumberItems = (itemID, amount) => {
+		const localCart = JSON.parse(localStorage.getItem('cart'));
+
+		let cart = [...localCart];
+		let foundedItem = cart.find((item) => item.id === itemID);
+		foundedItem.itemCount = amount;
+		if (foundedItem.itemCount === 0) {
+			cart = cart.filter((itemCart) => itemCart.id !== itemID);
+		}
+		localStorage.setItem('cart', JSON.stringify(cart));
+		setCartShopping(cart);
+	};
 	const removeItem = (itemID) => {
 		const localCart = JSON.parse(localStorage.getItem('cart'));
 
@@ -50,5 +62,6 @@ export const useCartOperations = (setCartShopping) => {
 		handleClickDecrementItems,
 		handleClickIncrementItems,
 		removeItem,
+		setNumberItems,
 	};
 };
