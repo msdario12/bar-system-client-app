@@ -1,4 +1,9 @@
-import { faAdd, faMinus, faRemove } from '@fortawesome/free-solid-svg-icons';
+import {
+	faAdd,
+	faMinus,
+	faPenToSquare,
+	faRemove,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useCartOperations } from '../hooks/useCartOperations';
 import { CircleButton } from '../elements/CircleButton';
@@ -55,12 +60,19 @@ export const TableRowCartShopping = (props) => {
 				<span>{`$${price * itemCount}`}</span>
 			</td>
 
-			<td className='px-6 py-4 text-center my-auto '>
-				<CircleButton
-					onClick={() => removeItem(item.id)}
-					className={' text-red-600 dark:text-red-500'}>
-					<FontAwesomeIcon icon={faRemove} size='lg' />
-				</CircleButton>
+			<td className='px-6 py-4 text-center my-auto'>
+				<div className='flex items-center space-x-3 justify-center'>
+					<CircleButton
+						onClick={() => removeItem(item.id)}
+						className={' text-red-600 dark:text-red-500'}>
+						<FontAwesomeIcon icon={faRemove} size='lg' />
+					</CircleButton>
+					<CircleButton
+						onClick={() => console.log('Añadir nota')}
+						className={' text-blue-400 dark:text-blue-400'}>
+						<FontAwesomeIcon icon={faPenToSquare} size='lg' />
+					</CircleButton>
+				</div>
 			</td>
 		</tr>
 	);
