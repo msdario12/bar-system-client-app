@@ -1,9 +1,19 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CardItem } from './components/CardItem';
 import { menuItems } from './db/menuItems';
 import { CartShoppingTable } from './components/CartShoppingTable';
+
 export const App = () => {
 	const [cartShopping, setCartShopping] = useState([]);
+
+	useEffect(() => {
+		let localCart = localStorage.getItem('cart');
+		if (!localCart) {
+			return;
+		}
+		setCartShopping(JSON.parse(localCart));
+	}, []);
+
 	return (
 		<div className='container mx-auto px-3'>
 			<header>
@@ -42,6 +52,7 @@ export const App = () => {
 							<CardItem
 								key={item.id}
 								item={item}
+								cartShopping={cartShopping}
 								setCartShopping={setCartShopping}
 							/>
 						))}

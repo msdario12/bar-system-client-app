@@ -1,5 +1,3 @@
-import { faAdd, faMinus } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { TableRowCartShopping } from './TableRowCartShopping';
 
 export const CartShoppingTable = (props) => {
@@ -27,13 +25,14 @@ export const CartShoppingTable = (props) => {
 					</tr>
 				</thead>
 				<tbody>
-					{cartShopping.map((item) => (
-						<TableRowCartShopping
-							key={item.id}
-							item={item}
-							setCartShopping={setCartShopping}
-						/>
-					))}
+					{cartShopping.length > 0 &&
+						cartShopping.map((item) => (
+							<TableRowCartShopping
+								key={item.id}
+								item={item}
+								setCartShopping={setCartShopping}
+							/>
+						))}
 				</tbody>
 			</table>
 		</div>

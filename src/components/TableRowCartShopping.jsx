@@ -4,10 +4,9 @@ import { useCartOperations } from '../hooks/useCartOperations';
 
 export const TableRowCartShopping = (props) => {
 	const { item, setCartShopping } = props;
+	const { handleClickDecrementItems, handleClickIncrementItems, removeItem } =
+		useCartOperations(setCartShopping);
 	const { name, price, image, itemCount } = item;
-
-	const { handleClickDecrementItems, handleClickIncrementItems } =
-		useCartOperations(item, setCartShopping);
 
 	return (
 		<tr className='bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600'>
@@ -20,9 +19,8 @@ export const TableRowCartShopping = (props) => {
 			<td className='px-6 py-4'>
 				<div className='flex items-center space-x-3'>
 					<button
-						onClick={handleClickDecrementItems}
+						onClick={() => handleClickDecrementItems(item.id)}
 						className='inline-flex items-center p-1 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700'>
-						<span className='sr-only'>Quantity button</span>
 						<FontAwesomeIcon icon={faMinus} size='xs' />
 					</button>
 					<div>
@@ -31,14 +29,11 @@ export const TableRowCartShopping = (props) => {
 							type='number'
 							id='first_product'
 							className='bg-gray-50 w-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-							placeholder='1'
-							required
 						/>
 					</div>
 					<button
-						onClick={handleClickIncrementItems}
+						onClick={() => handleClickIncrementItems(item.id)}
 						className='inline-flex items-center p-1 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700'>
-						<span className='sr-only'>Quantity button</span>
 						<FontAwesomeIcon icon={faAdd} size='xs' />
 					</button>
 				</div>
@@ -47,11 +42,11 @@ export const TableRowCartShopping = (props) => {
 				{`$${price * itemCount}`}
 			</td>
 			<td className='px-6 py-4'>
-				<a
-					href='#'
+				<button
+					onClick={() => removeItem(item.id)}
 					className='font-medium text-red-600 dark:text-red-500 hover:underline'>
-					Remove
-				</a>
+					Remover
+				</button>
 			</td>
 		</tr>
 	);
