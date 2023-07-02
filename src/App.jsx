@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { CardItem } from './components/CardItem';
 import { menuItems } from './db/menuItems';
 import { CartShoppingTable } from './components/CartShoppingTable';
+import { ShowQRCode } from './components/ShowQRCode';
 
 export const App = () => {
 	const [cartShopping, setCartShopping] = useState([]);
@@ -64,6 +65,11 @@ export const App = () => {
 					cartShopping={cartShopping}
 					setCartShopping={setCartShopping}
 				/>
+			</section>
+			<section>
+			<h2 className='text-3xl font-bold'>Código QR del pedido</h2>
+
+				<ShowQRCode cartShopping={cartShopping}/>
 			</section>
 		</div>
 	);
