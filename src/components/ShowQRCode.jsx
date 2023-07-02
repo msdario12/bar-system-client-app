@@ -7,7 +7,6 @@ export const ShowQRCode = ({ cartShopping }) => {
 			style={{
 				height: 'auto',
 				margin: '0 auto',
-				maxWidth: 400,
 				width: '100%',
 			}}>
 			<QRCode

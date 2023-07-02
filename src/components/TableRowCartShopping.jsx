@@ -60,7 +60,7 @@ export const TableRowCartShopping = (props) => {
 				<span>{`$${price * itemCount}`}</span>
 			</td>
 
-			<td className='px-6 py-4 text-center my-auto'>
+			<td className='px-3 py-4 text-center my-auto'>
 				<div className='flex items-center space-x-3 justify-center'>
 					<CircleButton
 						onClick={() => removeItem(item.id)}
